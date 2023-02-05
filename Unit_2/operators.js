@@ -69,6 +69,7 @@ console.log(a); // 3
 let g = 100;
 console.log(g + 50); // 150
 console.log(g); // 100
+// Assignment happening:
 g = g + 100;
 console.log(g); // 200
 console.log(g + 50); // 250
