@@ -46,6 +46,7 @@ async function start() {
     console.log(`\nYou set ${highNum} as the highest value.`);
   }
 
+  // Calling the pick high function
   pickHighNum();
 }
 // Stops the start function from running, "exits"
