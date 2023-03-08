@@ -1,3 +1,11 @@
+# Built-in / Inherent Events
+
+These are events that are tied/a part of elements within our HTML:
+
+- Forms
+- Buttons
+- a / Anchor
+
 # Forms
 
 - `<form>` groups input fields together
@@ -20,3 +28,12 @@
 - `placeholder` is a way for us to write a note to users as to what might be input/written into the input field. Helper/guide text.
 - `value` is what is held within the input when submitted
   - This gets populated when a user types into it/interacts with it.
+
+## Steps for DOM Manipulation
+
+- **Create** the element.
+- **Assign** any values to properties.
+  - Provide text, class names, id names, etc.
+- **Append** to a parent element.
+
+_Note:_ If an element already exists, we might only need to _assign_ (reassignment) it a new value to update it.
