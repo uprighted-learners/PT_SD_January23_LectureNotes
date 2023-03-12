@@ -196,3 +196,24 @@ function fetchFellowship() {
 fetchFellowship();
 
 // * Error Handling with try/catch
+// Async/Await
+async function getCatFact3() {
+  try {
+    // let response = fetch(url); // break - use to show "catch"
+    let response = await fetch(url);
+    let results = await response.json();
+    let data = results.data[0];
+    log("Try block of try/catch:", data);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+getCatFact3();
+
+//* Error Handling with resolvers (.catch())
+
+fetch(url)
+  .then((r) => r.json())
+  .then((d) => log("-------> Fetch Resolver:", d.data[0]))
+  .catch((err) => console.error(err));
