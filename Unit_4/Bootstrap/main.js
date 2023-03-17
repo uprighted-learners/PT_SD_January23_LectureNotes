@@ -25,7 +25,7 @@ const removeElements = (element) => {
 
 // Build function for Displaying Random Recipe single card
 const displayRandomCard = (recipe) => {
-  // console.log(recipe);
+  console.log(recipe);
   // make variable for parent container
   const randomCard = document.querySelector(".random-card");
 
