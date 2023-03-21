@@ -43,11 +43,31 @@ This allows us to create our own routes and endpoints to perform CRUD functional
 
 - To install Express we run the command: `npm i express`
 - Node Package Manager(npm) install(i) express
+- Brings in our node_modules and package-lock.json
 
 3. We will create a file within our project (the traditional way in VSC) titled: `.gitignore`
 
 - In the gitignore file we will add: `/node_modules`
 - This tells our local repository to ignore the node_modules folder when we push and backup our code to GitHub
+- When cloning down a project that ignores items: run the command "npm install" to acquire all dependencies/files needed
+
+---
+
+## API vs. Server
+
+We've talked about APIs and Servers in a general sense a lot together.
+To be clear:
+
+- An API and the Server are two different things
+- An API is an Application Programming Interface, which is a way to provide information for other applications (communication among applications, ex. the front end web page can communicate with the server).
+- An API provides access to the server.
+- A server is an application that's locally saved in your system, even a physical device.
+
+### Visual Examples:
+
+![Example 1](./assets/rest-api-model.png)
+
+![Example 2](./assets/API.png)
 
 ---
 
