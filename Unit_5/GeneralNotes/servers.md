@@ -71,6 +71,17 @@ To be clear:
 
 ---
 
+## MVC
+
+- Stands for Model View Controller
+- Architecture pattern(structure in which they are written/coded) that helps our Separation of Concerns
+- Model: Database schematic, the blueprint for our data (we dictate what created data looks like/it's datatype)
+- View: browser, Postman, etc. (what the users see)
+  - Application that interface with the server.
+- Controller: Part of the server application which handles logic. (How we build our logic within the server, we code and create what routes can be used and what they do.)
+
+---
+
 What does it all mean??
 
 The Flow with Words:
