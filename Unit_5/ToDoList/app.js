@@ -5,8 +5,16 @@ const app = express(); // simplify our method calls
 // Create a PORT number to run the app/server on our local machine
 // Server port w/in localhost. Using "all caps" indicates a "general" variable.
 const PORT = 4000;
+
+// --------------------- Required File Paths -------------------------
 // Create a variable that imports the practice controller (gives app.js access to it)
 const practiceController = require("./controller/practice.controller");
+// Require in the index.js from helpers(./helpers) w/ object destructuring
+const { logTime } = require("./helpers");
+
+// ----------------- App Functionality/ What it does next -------------
+// Telling the express app to first use this middleware function
+app.use(logTime);
 
 // Provide us access to use JSON within our routes
 // call on our app var, use the .use() method to tell our app: express.json() (use JSON please express)
