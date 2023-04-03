@@ -67,8 +67,8 @@ This is an in-class build where we are creating a quick server that covers the C
 | X      | Build GET One                    |                                                |
 | X      | Test Route                       |                                                |
 | X      | Build GET All by Class           |                                                |
-|        | Consider conditions              | Spelling/capitalization .toLowerCase()         |
-|        | Test Route                       |                                                |
+| X      | Consider conditions              | Spelling/capitalization .toLowerCase()         |
+| X      | Test Route                       |                                                |
 |        | Build POST One                   |                                                |
 |        | Test Route                       |                                                |
 |        | Build PUT One by ID              |                                                |
@@ -80,7 +80,7 @@ This is an in-class build where we are creating a quick server that covers the C
 
 | Stretch Goals                                      | Status            |
 | -------------------------------------------------- | ----------------- |
-| `POST` - What if a character ID already exists?    | Solution Provide  |
+| `POST` - What if a character ID already exists?    | Solution Provided |
 | `PUT` - What if one key is changed in a character? | Solution Provided |
 
 ### POST
