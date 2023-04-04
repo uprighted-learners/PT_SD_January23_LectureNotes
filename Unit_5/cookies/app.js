@@ -3,7 +3,7 @@ const app = express();
 const PORT = 4003;
 const log = console.log;
 const cookieParser = require("cookie-parser");
-//const db = require("./db.json");
+const db = require("./db.json");
 
 // provides us access to the middleware so that we can see what cookies are stored.
 app.use(cookieParser());
@@ -12,13 +12,13 @@ app.use(express.json());
 
 // Build a route (GET) to see/test/create a cookie: http://localhost:4003/
 
-let db = [
-  { id: 1, item: "milk", price: 2.89 },
-  { id: 2, item: "bread", price: 3.99 },
-  { id: 3, item: "hamburger", price: 5.99 },
-  { id: 4, item: "coffee", price: 12.59 },
-  { id: 5, item: "cheese", price: 2.79 },
-];
+// let db = [
+//   { id: 1, item: "milk", price: 2.89 },
+//   { id: 2, item: "bread", price: 3.99 },
+//   { id: 3, item: "hamburger", price: 5.99 },
+//   { id: 4, item: "coffee", price: 12.59 },
+//   { id: 5, item: "cheese", price: 2.79 },
+// ];
 
 app.get("/", (req, res) => {
   // log(req.cookies);
@@ -35,14 +35,17 @@ app.get("/", (req, res) => {
   //   log(check);
   //   log(check.cart);
 
-  let offer;
-
-  //let data = JSON.parse(db);
+  // Set var offer to an empty array versus an uninitialized variable
+  let offer = [];
 
   check.cart.every((obj) => {
-    offer = db.filter((dbItem) => {
-      dbItem.item == obj.item && dbItem.price < obj.price;
-      log(`${dbItem.item} vs ${obj.item}`, `& ${dbItem.price} vs ${obj.price}`);
+    // Instead of setting offer to the filtered array of db, we perform the filter and write if conditional to push an item from the db to offer var if both conditions pass
+    db.filter((i) => {
+      if (i.item === obj.item && i.price < obj.price) {
+        offer.push(i);
+      }
+      // Console logged to check each name and price comparison for myself
+      // log(`${i.item} vs ${obj.item}`, `& ${i.price} vs ${obj.price}`);
     });
 
     if (offer.length > 0) {
@@ -51,8 +54,8 @@ app.get("/", (req, res) => {
 
     return true;
   });
-
-  log(offer);
+  // Console logged to check if the offer array was changing when item passed the filter tests
+  //log(offer);
 
   if (offer.length > 0) {
     res.send({

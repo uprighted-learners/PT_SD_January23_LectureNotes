@@ -69,12 +69,12 @@ This is an in-class build where we are creating a quick server that covers the C
 | X      | Build GET All by Class           |                                                |
 | X      | Consider conditions              | Spelling/capitalization .toLowerCase()         |
 | X      | Test Route                       |                                                |
-|        | Build POST One                   |                                                |
-|        | Test Route                       |                                                |
-|        | Build PUT One by ID              |                                                |
-|        | Test Route                       |                                                |
-|        | Build DELETE One by ID           |                                                |
-|        | Test Route                       |                                                |
+| X      | Build POST One                   |                                                |
+| X      | Test Route                       |                                                |
+| X      | Build PUT One by ID              |                                                |
+| X      | Test Route                       |                                                |
+| X      | Build DELETE One by ID           |                                                |
+| X      | Test Route                       |                                                |
 
 ## Stretch Goals
 
