@@ -1,6 +1,22 @@
 const router = require("express").Router();
 // We need to import our model so that we have access to the document schema (get directions on how to build the data)
 const User = require("../models/user.model");
+/* 
+  Require in the bcrypt dependency by storing it in a variable.
+  Bcrypt will be included in our controller --> add bcrypt in any file where we want encryption to take place.
+*/
+const bcrypt = require("bcrypt");
+
+// Create a function to show how our password is being used/encrypted (just a demo)
+// const testingBcrypt = (password) => {
+// Storing in the variable name encrypt the ability to use bcrypt's hashSync method to encrypt our "password"
+//   let encrypt = bcrypt.hashSync(password, 13);
+//   console.log("ENCRYPTED PASSWORD:", encrypt);
+// };
+
+// testingBcrypt("myPassword");
+// testingBcrypt("myPassword");
+// testingBcrypt("new_password123");
 
 /* 
     ** IMPORTANT NOTE **
@@ -19,7 +35,9 @@ router.post("/signup", async (req, res) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password,
+      // password: req.body.password, // Should not store plain text passwords in the db
+      // We want to pass in the password provided by the user, salt it 13 times, and add to db
+      password: bcrypt.hashSync(req.body.password, 13),
     }); // using values from req.body to form our object.
 
     const newUser = await user.save(); // Writes to database. Returns a response - why it should be an "await".

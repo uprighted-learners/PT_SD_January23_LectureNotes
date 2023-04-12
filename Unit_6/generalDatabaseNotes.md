@@ -72,3 +72,43 @@ A GUI(Graphical User Interface) for working with MongoDB
 - E: Express, our server
 - R: React, our frontend
 - N: Node, everything in between
+
+<br>
+
+# Security
+
+Encryption:
+
+- Plain text passwords stored within a database is highly insecure.
+- Encryption helps us provide protection to both users and databases
+
+## Bcrypt
+
+- `npm i bcrypt`
+- dependency that handles encryption of data.
+  - most commonly - passwords
+- Uses hashing and salting to hide the password/value so it's nearly impossible to decrypt (hack/solve encryption)
+
+Hashing:
+
+- Hashing produces a one-way randomized string based off the plain text string provided.
+  - Uses a hashing algorithm to change plain text into a set of various characters.
+  - Uses `salting` as an extra layer of encryption.
+
+Salting:
+
+- Process of including a randomized string included within the hashing prior to being set to the database.
+- This makes it unpredictable as to what the hashed value becomes.
+- With bcrypt we can determine how many iterations the hashed value should be salted.
+  - Currently 10 to 13 iterations are common for security.
+
+example code:
+
+```js
+bcrypt.hashSync("abc123", 10);
+```
+
+- first param = password
+- second param = number of times the password will be salted.
+
+<br>
