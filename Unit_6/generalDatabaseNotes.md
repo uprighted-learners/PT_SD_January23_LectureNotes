@@ -112,3 +112,31 @@ bcrypt.hashSync("abc123", 10);
 - second param = number of times the password will be salted.
 
 <br>
+
+## JWT
+
+- JSON Web Token
+- `npm i jsonwebtoken`
+- A way for our server to authenticate the user.
+- Is a token that is considered to allow access during a specific amount of time.
+
+example code:
+
+```js
+const token = jwt.sign({ id: user._id }, "secret message", {
+  expiresIn: 60 * 60 * 24,
+});
+```
+
+`sign(payload, message, options)`
+
+3 arguments:
+
+- payload
+  - In the sample we are using an object that details the id of the user. Typically details of the user to verify it's them.
+- encrypt/decrypt message
+  - Passed in as a string in the sample
+  - Typically stored as a `.env` variable.
+- Options sets (expiration details)
+  - represents/details seconds or a strings describing a time span for the token to be valid/when to expire
+    - ex: `"2 days"` or `"10h"`
