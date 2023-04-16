@@ -48,9 +48,24 @@ router.post("/", async (req, res) => {
         Hint: Consider login within user.controller.js
 
 */
-
+// http://localhost:4000/movies/643c6559cb1e3eca71d9a1de
 router.get("/:id", async (req, res) => {
   try {
+    // grab parameters from url
+    const { id } = req.params;
+
+    // Find the document(movie JSON obj) with in the DB collection
+    const getMovie = await Movie.findOne({ _id: id });
+
+    // Response message: use a ternary to make a fancy response
+    getMovie
+      ? res.status(200).json({
+          msg: `${getMovie.title} was found!`,
+          getMovie,
+        })
+      : res.status(404).json({
+          message: "No movie found.",
+        });
   } catch (err) {
     errorResponse(res, err);
   }
@@ -67,9 +82,21 @@ router.get("/:id", async (req, res) => {
         
         Hint: parameters within method are optional
 */
-
+// http://localhost:4000/movies/
 router.get("/", async (req, res) => {
   try {
+    // This endpoint will only return all movies, no req or params needed
+    // Await all documents from the Movie collection
+    const getAllMovies = await Movie.find();
+
+    getAllMovies
+      ? res.status(200).json({
+          message: "All movies from movie collection:",
+          getAllMovies,
+        })
+      : res.status(404).json({
+          message: `No movies found.`,
+        });
   } catch (err) {
     errorResponse(res, err);
   }
@@ -88,6 +115,30 @@ router.get("/", async (req, res) => {
 
 router.get("/genre/:genre", async (req, res) => {
   try {
+    // Grab genre value from parameters
+    const { genre } = req.params;
+    //let buildWord;
+
+    // Trying to spell genres the same way...
+    // if (genre) {
+    //   for (let i = 0; i < genre.length; i++) {
+    //     i === 0
+    //       ? (buildWord = genre[i].toUpperCase())
+    //       : (buildWord += genre[i].toLowerCase());
+    //   }
+    // }
+
+    // Finding all movies in DB whose genre matches the params ({db genre key : req.params.genre })
+    // { genre: buildWord }
+    const getMovies = await Movie.find({ genre: genre });
+
+    getMovies.length > 0
+      ? res.status(200).json({
+          getMovies,
+        })
+      : res.status(404).json({
+          message: `No movies found.`,
+        });
   } catch (err) {
     errorResponse(res, err);
   }
