@@ -145,6 +145,16 @@ router.get("/genre/:genre", async (req, res) => {
 });
 
 // TODO PATCH One
+router.patch("/:id", async (req, res) => {
+  try {
+    //1. Pull value from parameter
+    //2. Pull data from the body.
+    //3. Use method to locate document based off ID and pass in new information.
+    //4. Respond to client.
+  } catch (err) {
+    errorResponse(res, err);
+  }
+});
 
 // TODO Delete One
 
