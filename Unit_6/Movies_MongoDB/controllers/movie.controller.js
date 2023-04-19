@@ -145,12 +145,31 @@ router.get("/genre/:genre", async (req, res) => {
 });
 
 // TODO PATCH One
+// http://localhost:4000/movies/643c7dd92846c6ae32e80467
 router.patch("/:id", async (req, res) => {
   try {
     //1. Pull value from parameter
+    const { id } = req.params;
+
     //2. Pull data from the body.
-    //3. Use method to locate document based off ID and pass in new information.
+    const info = req.body;
+
+    //3. Use method .findOneAndUpdate() to locate document based off ID and pass in new information.
+    const returnOption = { new: true };
+
+    //* findOneAndUpdate(query/filter, document, options)
+    // returnOptions allows us to view the updated document
+    const updatedMovie = await Movie.findOneAndUpdate(
+      { _id: id },
+      info,
+      returnOption
+    );
+
     //4. Respond to client.
+    res.status(200).json({
+      message: `${updatedMovie.title} has been updated successfully!`,
+      updatedMovie,
+    });
   } catch (err) {
     errorResponse(res, err);
   }
