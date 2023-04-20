@@ -38,6 +38,7 @@ app.use(express.json());
 // --------------------- Routes to Controllers -----------------------
 // http://localhost:4000/user
 app.use("/user", users);
+
 // http://localhost:4000/movies
 app.use("/movies", movies);
 
