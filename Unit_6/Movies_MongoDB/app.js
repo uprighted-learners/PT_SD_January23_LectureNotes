@@ -10,6 +10,10 @@ const log = console.log;
 const users = require("./controllers/user.controller");
 const movies = require("./controllers/movie.controller");
 
+// --------------------- Middleware: ----------------------
+const validateSession = require("./middleware/validate-session");
+
+
 // Require in the mongoose middleware, pulled/used from node_modules
 const mongoose = require("mongoose");
 // Create variable for our connection address variable from the .env
@@ -38,6 +42,10 @@ app.use(express.json());
 // --------------------- Routes to Controllers -----------------------
 // http://localhost:4000/user
 app.use("/user", users);
+
+// One way to implement validate session, directly in app.js:
+// All routes below will require validation(logged in user w/ valid token) when used this way.
+// app.use(validateSession);
 
 // http://localhost:4000/movies
 app.use("/movies", movies);

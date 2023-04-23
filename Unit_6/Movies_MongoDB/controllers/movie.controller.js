@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const Movie = require("../models/movie.model");
 
+// Way to use validate session directly in the controller and endpoints:
+const validateSession = require("../middleware/validate-session");
+
 // Error Response Function
 const errorResponse = (res, error) => {
   return res.status(500).json({
@@ -10,7 +13,8 @@ const errorResponse = (res, error) => {
 
 // TODO POST
 // http://localhost:4000/movies/
-router.post("/", async (req, res) => {
+// ! Adding validate session to grab user._id from token to save to DB
+router.post("/", validateSession, async (req, res) => {
   try {
     //1. Pull data from client (body)
     const { title, genre, rating, length, releaseYear } = req.body;
@@ -22,6 +26,7 @@ router.post("/", async (req, res) => {
       rating,
       length,
       releaseYear,
+      owner_id: req.user._id
     });
 
     //3. Use mongoose method to save to MongoDB
@@ -83,7 +88,8 @@ router.get("/:id", async (req, res) => {
         Hint: parameters within method are optional
 */
 // http://localhost:4000/movies/
-router.get("/", async (req, res) => {
+// ! Adding validate session by passing it in as a parameter for the endpoint
+router.get("/", validateSession, async (req, res) => {
   try {
     // This endpoint will only return all movies, no req or params needed
     // Await all documents from the Movie collection
@@ -146,10 +152,13 @@ router.get("/genre/:genre", async (req, res) => {
 
 // TODO PATCH One
 // http://localhost:4000/movies/643c7dd92846c6ae32e80467
-router.patch("/:id", async (req, res) => {
+// ! Adding validate session to make sure that the movie also belongs to the logged in user
+router.patch("/:id", validateSession, async (req, res) => {
   try {
     //1. Pull value from parameter
-    const { id } = req.params;
+    // const { id } = req.params;
+    // Create a filter to check both id from req.params & owner_id against id from token
+    const filter = {_id: req.params.id, owner_id: req.user._id};
 
     //2. Pull data from the body.
     const info = req.body;
@@ -160,7 +169,7 @@ router.patch("/:id", async (req, res) => {
     //* findOneAndUpdate(query/filter, document, options)
     // returnOptions allows us to view the updated document
     const updatedMovie = await Movie.findOneAndUpdate(
-      { _id: id },
+      filter,
       info,
       returnOption
     );
@@ -177,13 +186,14 @@ router.patch("/:id", async (req, res) => {
 
 // TODO Delete One
 // http://localhost:4000/movies/643c7dd92846c6ae32e80467
-router.delete("/:id", async (req, res) => {
+// ! Adding Validate session
+router.delete("/:id", validateSession, async (req, res) => {
   try {
     //1. Capture ID
     const { id } = req.params;
 
     //2. Use delete method to locate and remove based off ID
-    const deleteMovie = await Movie.deleteOne({ _id: id });
+    const deleteMovie = await Movie.deleteOne({ _id: id, owner_id: req.user._id });
 
     //3. Respond to Client, with a ternary for a ? if true do this : false do this
     deleteMovie.deletedCount
