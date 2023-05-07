@@ -166,3 +166,43 @@ Quick Commands
 
 > Note: Automatically names our component based off the file name (you can change or edit if needed but that's why file names done correctly can make your job easier.)
 <br>
+
+# State
+**State** helps the program/us modify data based on a condition. It allows us to modify data that changes/needs to be able to change.
+- ex: 
+    - offline/online status
+    - session token storage
+- Utilizes React Hooks (useState is a built in React Hook)
+    - Hooks are functions that let you “hook into” React state and lifecycle features from function components.
+- It requires to be imported:
+    - `import { useState } from 'react'`
+
+> <br>
+>
+> **Why this matters:**
+> - React is a programming paradigm: Programming paradigms are different ways or styles in which a given program or programming language can be organized.
+>   - ^That means we have to tell React how to behave/be organized.
+> - React is **Declarative**, which means that we can create components and React handles the procedures for us.
+> - DOM Manipulation is considered **Imperative**, it is procedural in nature: This means that we have have to go through specific procedures in order to change anything (select elements, provide values, append, etc). 
+>
+> State via useState() allows us to bridge that gap.
+>
+> <br>
+
+## `useState()`
+The useState() hook is an object that we are destructuring. 
+- It holds a variable and a function that handles updating the variable associated with it.
+- The hook can hold onto an initial value.
+- Structure:
+  - `keyword [ variable, function ] = hook(initial value);`
+  - The Process (^above broken down into the logic happening behind the scenes):
+
+```jsx
+function useState(startingData) {
+  function updateState(newData) {
+    startingData = newData;
+  }
+  return [startingData, updateState]
+}
+```
+
