@@ -206,3 +206,45 @@ function useState(startingData) {
 }
 ```
 
+A true example of what we will see and use:
+
+```jsx
+    // An example with a string as the starting data type
+    const [ names, setName ] = useState("Frodo");
+    
+    // An example with an int as the starting data type
+    const [ count, setCount ] = useState(0);
+```  
+
+## Changing State
+What if we want to update our information that is being held in our state?
+- Unfortunately, we are unable to modify our props.
+- _However_, we can utilize the **functions** to update the props!
+--> `keyword [ variable, function ] = hook(initial value);`
+
+## Re-rendering
+We can use a callback function to help with rendering processes.
+- useState can take raw value but also a callback function.
+
+ex: 
+```jsx
+const [ count, setCount ] = useState(0); // raw data value
+const [ count, setCount ] = useState(() => 0); // CB Function
+```
+- Callback function renders initial value ONCE.
+
+We have another means that we can utilize to help us determine state values.
+
+## prevState
+`prev` is a required aspect and is associated with the variable within the useState( ) process. Aka: **prev = previous State.**
+- This allows us to view the previous value within the variable and run the process like before.
+    - Currently it doesn't seem to do much more for us; however, it does provide us with the ability to handle our data in a different way.
+    - We can know take in our value and manipulate it in different ways without needing to leave our function.
+
+ex: with prevCount
+```jsx
+    const countUp = () => {
+        // setCount(count + 1);
+        setCount(prevCount => prevCount + 1);
+    }
+```
