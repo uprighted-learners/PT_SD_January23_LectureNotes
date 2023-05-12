@@ -9,7 +9,7 @@ export default function Presidents() {
         return president.passed === undefined;
     });
 
-    //console.log(livingPresidents); // working as expected
+    console.log(livingPresidents); // working as expected
 
     // Build a function to filter Presidents who have passed away.
     const deceasedPresidents = presidentsArray.filter(president => {
@@ -21,12 +21,12 @@ export default function Presidents() {
         <h2>Hello from Presidents!</h2>
         {/* One pres table of living presidents */}
         <PresidentTable 
-            title={"Living Presidents"} 
+            tableTitle={"Living Presidents"} 
             presidents={livingPresidents}
             />
         {/* One pres table of passed presidents */}
         <PresidentTable 
-            title={"Dead Presidents"} 
+            tableTitle={"Dead Presidents"} 
             presidents={deceasedPresidents}
             />
     </>

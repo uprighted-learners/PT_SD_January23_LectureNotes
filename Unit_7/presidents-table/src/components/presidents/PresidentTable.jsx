@@ -1,10 +1,10 @@
 // This will be a table component, child of Presidents, parent to PresidentRow
 import PresidentRow from "./PresidentRow"
 
-export default function PresidentTable(props) {
+export default function PresidentTable({tableTitle, presidents}) {
   return (
     <>
-        <h2>{props.title}</h2>
+        <h2>{tableTitle}</h2>
             <table>
                 <thead>
                     <tr>
@@ -17,7 +17,7 @@ export default function PresidentTable(props) {
                 </thead>
                 <tbody>
                     {
-                        props.presidents.map((president, i) => {
+                        presidents.map((president, i) => {
                             return (
                                 <PresidentRow 
                                     key={i}
