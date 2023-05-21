@@ -2,6 +2,7 @@
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import FullButton from '../../buttons/FullButton';
 
 export default function Signup({updateToken}) {
     // useState() to capture our firstName value and be able to update it with setFirstName(<--state function)
@@ -104,7 +105,9 @@ export default function Signup({updateToken}) {
                         autoComplete={"off"}
                         />
                 </FormGroup>
-                <Button type='submit'>Signup</Button>
+                <FullButton>
+                    <Button type='submit'>Signup</Button>
+                </FullButton>
             </Form>
     </>
   )

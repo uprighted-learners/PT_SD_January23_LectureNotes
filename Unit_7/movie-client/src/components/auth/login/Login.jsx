@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
+import FullButton from '../../buttons/FullButton';
 
 export default function Login({updateToken}) {
     // Build our refs
@@ -68,7 +69,9 @@ export default function Login({updateToken}) {
                         autoComplete="off"
                         />
                 </FormGroup>
-                <Button type='submit'>Login</Button>
+                <FullButton>
+                    <Button type='submit'>Login</Button>
+                </FullButton>
             </Form>
     </>
   )

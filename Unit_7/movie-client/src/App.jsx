@@ -1,19 +1,27 @@
 import './App.css';
 import Auth from './components/auth/Auth';
-import { useState } from 'react';
+import MovieIndex from './components/movie/MovieIndex';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
   // Use useState to house token
   const [ sessionToken, setSessionToken ] = useState('');
 
-  //console.log('App.jsx:', sessionToken);
+  console.log('App.jsx:', sessionToken);
 
   const updateToken = newToken => {
     localStorage.setItem("token", newToken); 
     // ^ .setItem(key, value)
     setSessionToken(newToken);
   }
+
+  // Use useEffect so the session token will not be reset if the page refreshes
+  useEffect(() => {
+    if(localStorage.getItem('token')) {
+      setSessionToken(localStorage.getItem('token'))
+    }
+  }, [])
 
   // Create routing using the Routes tag with the Route tags holding the individual components/view 
   return (
@@ -25,7 +33,7 @@ function App() {
           />
         <Route
           path='/movie'
-          element={<h2>Movie Page Placeholder</h2>}
+          element={<MovieIndex />}
           />
       </Routes>
     </div>
