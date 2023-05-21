@@ -6,16 +6,16 @@ import Login from "./login/Login";
 // https://getbootstrap.com/docs/5.3/layout/grid/
 import { Col, Container, Row } from 'reactstrap';
 
-export default function Auth() {
+export default function Auth(props) {
   return (
     <>
         <Container >
             <Row>
                 <Col md="6">
-                    <Signup />
+                    <Signup updateToken={props.updateToken}/>
                 </Col>
                 <Col md="6">
-                    <Login />
+                    <Login updateToken={props.updateToken}/>
                 </Col>
             </Row>
             {/* <Row>
