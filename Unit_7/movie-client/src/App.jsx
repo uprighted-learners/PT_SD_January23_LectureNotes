@@ -33,7 +33,7 @@ function App() {
           />
         <Route
           path='/movie'
-          element={<MovieIndex />}
+          element={<MovieIndex token={sessionToken}/>}
           />
       </Routes>
     </div>

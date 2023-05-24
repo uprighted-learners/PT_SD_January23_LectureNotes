@@ -2,13 +2,13 @@ import React from 'react'
 import MovieCreate from './MovieCreate';
 import { Col, Container, Row } from 'reactstrap';
 
-export default function MovieIndex() {
+export default function MovieIndex(props) {
   return (
     <>
         <Container>
             <Row>
                 <Col md="4">
-                    <MovieCreate />
+                    <MovieCreate token={props.token}/>
                 </Col>
                 <Col md="8">
                     [TABLE GOES HERE!]

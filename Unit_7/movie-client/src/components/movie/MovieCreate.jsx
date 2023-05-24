@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 // import the needed elements from reactstrap
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import FullButton from "../buttons/FullButton";
 
-export default function MovieCreate() {
+export default function MovieCreate(props) {
+  // Use useRef to get values from inputs!
+  const titleRef = useRef();
+  const genreRef = useRef();
+  const ratingRef = useRef();
+  const lengthRef = useRef();
+  const releasedRef = useRef();
+
   // Have an array of movie ratings
   let ratings = [null, "G", "PG", "PG-13", "NC-17", "R"];
 
@@ -20,27 +27,80 @@ export default function MovieCreate() {
 
     return (
       <>
-        <Input type="select">
+        <Input innerRef={releasedRef} type="select">
           {years.map((year, index) => {
-            return <option key={index} value={year}>{year}</option>
+            return (
+              <option key={index} value={year}>
+                {year}
+              </option>
+            );
           })}
         </Input>
       </>
     );
   };
 
+  // Build our handleSubmit function
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.log(titleRef.current.value)
+
+    // Create vars for our input values
+    const title = titleRef.current.value;
+    const genre = genreRef.current.value;
+    const rating = ratingRef.current.value;
+    const length = lengthRef.current.value;
+    const releaseYear = releasedRef.current.value;
+
+    // Build url variable
+    let url = `http://localhost:4000/movies/`;
+
+    // Construct the body object & JSON stringify it
+    let bodyObj = JSON.stringify({
+      title,
+      genre,
+      rating,
+      length,
+      releaseYear,
+    }); // JSON-ifying our data to be passed.
+
+    // Headers
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    // setting our content to be passed
+    myHeaders.append("Authorization", props.token);
+    // token to evaluate.
+
+    // Request Options object
+    const requestOption = {
+      headers: myHeaders,
+      body: bodyObj,
+      method: "POST",
+    }; // packaging up all our options in an object
+
+    // Build the try/catch with our fetch
+    try {
+      const res = await fetch(url, requestOption);
+      const data = await res.json();
+
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   // Build out the form
   return (
     <>
       <h1>Add Movie</h1>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label>Title</Label>
-          <Input autoComplete="off" type="text" required />
+          <Input innerRef={titleRef} autoComplete="off" type="text" required />
         </FormGroup>
         <FormGroup>
           <Label>Genre</Label>
-          <Input type="select">
+          <Input innerRef={genreRef} type="select">
             <option value={""}></option>
             <option value={"Comedy"}>Comedy</option>
             <option value={"Drama"}>Drama</option>
@@ -54,7 +114,7 @@ export default function MovieCreate() {
         </FormGroup>
         <FormGroup>
           <Label>Rating</Label>
-          <Input type="select">
+          <Input innerRef={ratingRef} type="select">
             {ratings.map((r, i) => (
               <option key={i} value={r}>
                 {r}
@@ -64,7 +124,7 @@ export default function MovieCreate() {
         </FormGroup>
         <FormGroup>
           <Label>Length (in minutes)</Label>
-          <Input type="number" autoComplete="off" />
+          <Input innerRef={lengthRef} type="number" autoComplete="off" />
         </FormGroup>
         <FormGroup>
           <Label>Year Released</Label>
