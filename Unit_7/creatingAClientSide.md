@@ -361,7 +361,7 @@ Component construction order:
 - **DELETE** Movie functionality:
     - We can POST and GET on our application, but it's time to be able to delete a movie.
     - Since the table displays all the movies, this is a great place to build out that functionality.
-    - First we will build out an async function called deleteMovie that will receive the movie id in `MovieTable.jsx` above the return.l
+    - First we will build out an async function called deleteMovie that will receive the movie id in `MovieTable.jsx` above the return.
     - We will add a table header and table row to our table to allow us the ability to trigger our edit or delete with a button.
 
 4. Movie Edit, `MovieEdit.jsx`

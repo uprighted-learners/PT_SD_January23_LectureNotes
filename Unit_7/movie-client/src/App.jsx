@@ -1,6 +1,7 @@
 import './App.css';
 import Auth from './components/auth/Auth';
 import MovieIndex from './components/movie/MovieIndex';
+import MovieEdit from './components/movie/MovieEdit';
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -34,6 +35,10 @@ function App() {
         <Route
           path='/movie'
           element={<MovieIndex token={sessionToken}/>}
+          />
+        <Route 
+          path="/movie/update/:id"
+          element={<MovieEdit token={sessionToken}/>}
           />
       </Routes>
     </div>
