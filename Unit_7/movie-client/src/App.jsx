@@ -2,6 +2,7 @@ import './App.css';
 import Auth from './components/auth/Auth';
 import MovieIndex from './components/movie/MovieIndex';
 import MovieEdit from './components/movie/MovieEdit';
+import Logout from './components/auth/logout/Logout';
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -25,8 +26,14 @@ function App() {
   }, [])
 
   // Create routing using the Routes tag with the Route tags holding the individual components/view 
+  // Add Logout so it is visible only when there *IS* a sessionToken
   return (
     <div className="App">
+      {
+        sessionToken !== "" ?
+        <Logout setToken={setSessionToken}/> :
+        null
+      }
       <Routes>
         <Route
           path='/'
