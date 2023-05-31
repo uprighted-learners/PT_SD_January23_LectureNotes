@@ -178,4 +178,4 @@ A well maintained and organized board make an amazing real-time system that's a 
 
 <br>
 
-<img src="./assets/KanbanVsScrum.png">
+<img src="./assets/kanbanVsScrum.png">
