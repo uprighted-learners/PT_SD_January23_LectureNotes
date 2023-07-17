@@ -12,7 +12,9 @@ To use this effectively:
 2. In the upper left navbar menu click the "File" dropdown.
 3. Click the "Make a Copy" option.
 4. Name the file according to your project.
+
 (If using project with a team: )
+
 5. In the upper right hand corner is a "Share" button.
 6. Share the file with edit access to your dev teammates. 
 
